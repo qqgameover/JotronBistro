@@ -1,0 +1,17 @@
+<div class="container" *ngIf="selectedRestaurant">
+	<form>
+		<div class="form-group">
+			<label for="nameInput">Restaurant name</label>
+			<input #restName class="form-control" id="nameInput" aria-describedby="emailHelp"
+				placeholder="{{selectedRestaurant.name}}">
+		</div>
+
+		<div class="form-check">
+			<input #restStatus type="checkbox" [checked]="selectedRestaurant.status"
+				class="form-check-input" id="startAsOpen">
+			<label class="form-check-label" for="startAsOpen">Open status</label>
+		</div>
+		<button routerLink="/home" (click)="editRest(restName.value, restStatus.checked);" type="submit"
+			class="btn-lg w-100 btn-primary">Update Restaurant</button>
+	</form>
+</div>

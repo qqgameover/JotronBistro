@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="card-group col-12 justify-content-center" style="padding: 20px;"
+		*ngFor="let segment of segmentList; let i = index">
+		<div class="row">
+			<div *ngFor="let resturant of segment; let index = index" class="card col-4"
+				style="width: 18rem">
+				<div class="card-body" (click)="changeSelectedRest(index)"
+					routerLink="/edit-restaurant">
+					<h5 class="card-title text-center">{{resturant.name}}</h5>
+					<p *ngIf="resturant.status; else closedStatus"
+						class="card-text text-nowrap text-center text-success">
+						Open!
+					</p>
+					<ng-template #closedStatus>
+						<p (click)="changeStatus(i) " class="card-text text-nowrap 
+							text-center text-danger">
+							Closed!
+						</p>
+					</ng-template>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div routerLink="/register-restaurant" class="card bg-primary text-white w-100 col-4"
+		style="width: 18rem; margin: 10px;">
+		<div class="card-body">
+			<p class="div card-title text-center">
+				Register a new Restaurant
+			</p>
+		</div>
+	</div>
+</div>
