@@ -1,0 +1,27 @@
+<ng-template [ngIf]="selectedDish">
+    <div class="container">
+        <form class="mb-4">
+            <div class="form-group">
+                <label for="nameInput">Dish name</label>
+                <input #dishName class="form-control w-100" 
+                [value]="selectedDish.name" id="nameInput" 
+                aria-describedby="dishHelp"
+                    placeholder="{{selectedDish.name}}">
+            </div>
+        </form>
+        <div class="row">
+            <div class="card w-50 mb-2" *ngFor="let ingredient of selectedDish.ingredients">
+                <label for="nameInput">Ingrident name</label>
+                <input #dishName class="form-control w-100" 
+                [(ngModel)]="ingredient.name" id="nameInput" 
+                aria-describedby="dishHelp"
+                    placeholder="{{ingredient.name}}">
+                <label for="priceInput">Ingrident price</label>
+                <input #dishName class="form-control w-100" 
+                [(ngModel)]="ingredient.price" id="priceInput" 
+                aria-describedby="dishHelp"
+                    placeholder="{{ingredient.price}}">
+            </div>
+        </div>
+    </div>
+</ng-template>
