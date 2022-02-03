@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Dish } from '../classes/dish';
 import { Resturant } from '../classes/resturant';
 import { ResturantsService } from '../resturants.service';
 
@@ -15,7 +16,17 @@ export class EditResturantComponent implements OnInit {
     this.selectedRestaurant = this.resService.getSelectedRes();
   }
   editRest(restName: string, restStatus: boolean): void {
-    return;
+    var newRest = new Resturant(restName, restStatus);
+    this.resService.editSelectedRes(this.selectedRestaurant!, newRest);
+  }
+  deleteRest(rest: Resturant): void {
+    this.resService.deleteRest(rest);
+  }
+  deleteDish(rest: Resturant, dish: Dish): void {
+    this.resService.deleteDish(rest, dish);
+  }
+  setSelectedDish(dish: Dish): void {
+    this.resService.setSelectedDish(dish);
   }
 
 }

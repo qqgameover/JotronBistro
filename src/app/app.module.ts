@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterRestaurantComponent } from './register-restaurant/register-restaurant.component';
 import { EditResturantComponent } from './edit-resturant/edit-resturant.component';
+import { EditDishComponent } from './edit-dish/edit-dish.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { EditResturantComponent } from './edit-resturant/edit-resturant.componen
     MainComponent,
     HeaderComponent,
     RegisterRestaurantComponent,
-    EditResturantComponent
+    EditResturantComponent,
+    EditDishComponent
   ],
   imports: [
     BrowserModule,
