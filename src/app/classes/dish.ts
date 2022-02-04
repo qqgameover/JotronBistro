@@ -11,6 +11,6 @@ export class Dish {
     var total = this.ingredients.reduce((prev, curr) => {
       return prev + curr.price * curr.amount;
     }, 0)
-    return total;
+    return +((total / 100) * 120).toFixed(2);
   }
 }
