@@ -16,8 +16,8 @@ export class EditResturantComponent implements OnInit {
     this.selectedRestaurant = this.resService.getSelectedRes();
   }
   editRest(restName: string, restStatus: boolean): void {
-    var newRest = new Resturant(restName, restStatus);
-    this.resService.editSelectedRes(this.selectedRestaurant!, newRest);
+    this.resService.getSelectedRes().name = restName;
+    this.resService.getSelectedRes().status = restStatus;
   }
   deleteRest(rest: Resturant): void {
     this.resService.deleteRest(rest);
@@ -27,6 +27,14 @@ export class EditResturantComponent implements OnInit {
   }
   setSelectedDish(dish: Dish): void {
     this.resService.setSelectedDish(dish);
+  }
+  addNewDish(): void {
+    var dish = new Dish("");
+    this.resService.getSelectedRes().dishList.push(dish);
+    this.resService.setSelectedDish(dish);
+  }
+  getTotalDishPrice(dish: Dish): number {
+    return dish.getTotalDishPrice();
   }
 
 }

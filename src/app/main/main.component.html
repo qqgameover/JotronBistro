@@ -4,7 +4,7 @@
 		<div class="row">
 			<div *ngFor="let resturant of segment; let index = index" class="card col-4"
 				style="width: 18rem">
-				<div class="card-body" (click)="changeSelectedRest(index + i * 3)"
+				<div class="card-body" (click)="changeSelectedRest(resturant)"
 					routerLink="/edit-restaurant" style="cursor: pointer;">
 					<h5 class="card-title text-center">{{resturant.name}}</h5>
 					<p *ngIf="resturant.status; else closedStatus"
@@ -12,7 +12,7 @@
 						Open!
 					</p>
 					<ng-template #closedStatus>
-						<p (click)="changeStatus(i) " class="card-text text-nowrap 
+						<p class="card-text text-nowrap 
 							text-center text-danger">
 							Closed!
 						</p>
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div routerLink="/register-restaurant" class="card bg-primary text-white w-100 col-4"
-		style="width: 18rem; margin: 10px;">
+		style="width: 18rem; margin: 10px; cursor: pointer;">
 		<div class="card-body">
 			<p class="div card-title text-center">
 				Register a new Restaurant

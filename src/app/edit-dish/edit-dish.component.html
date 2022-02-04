@@ -1,27 +1,85 @@
 <ng-template [ngIf]="selectedDish">
     <div class="container">
-        <form class="mb-4">
-            <div class="form-group">
-                <label for="nameInput">Dish name</label>
-                <input #dishName class="form-control w-100" 
-                [value]="selectedDish.name" id="nameInput" 
-                aria-describedby="dishHelp"
-                    placeholder="{{selectedDish.name}}">
-            </div>
-        </form>
+        <div class="form-group mb-4">
+            <label for="nameInput">Dish name</label>
+            <input #dishName class="form-control w-100" 
+            [(ngModel)]="selectedDish.name" id="nameInput" 
+            aria-describedby="dishHelp"
+                placeholder="{{selectedDish.name}}">
+        </div>
         <div class="row">
             <div class="card w-50 mb-2" *ngFor="let ingredient of selectedDish.ingredients">
-                <label for="nameInput">Ingrident name</label>
-                <input #dishName class="form-control w-100" 
-                [(ngModel)]="ingredient.name" id="nameInput" 
-                aria-describedby="dishHelp"
-                    placeholder="{{ingredient.name}}">
+                <label>Ingrident</label>
+                <select class="form-select form-select-sm mb-3" 
+                aria-label=".form-select-lg example"
+                required
+                [(ngModel)]="ingredient.name"
+                >
+                    <option value="Pasta">Pasta</option>
+                    <option value="Minced Meat">Minced Meat</option>
+                    <option value="Egg">Egg</option>
+                    <option value="Parmesan">Parmesan</option>
+                    <option value="Dough">Dough</option>
+                    <option value="Cheese">Cheese</option>
+                </select>
                 <label for="priceInput">Ingrident price</label>
                 <input #dishName class="form-control w-100" 
                 [(ngModel)]="ingredient.price" id="priceInput" 
                 aria-describedby="dishHelp"
                     placeholder="{{ingredient.price}}">
+
+                <label>Ingrident amount</label>
+                <input class="form-control w-100 mb-3"
+                type="number" 
+                required
+                [(ngModel)]="ingredient.amount"
+                placeholder="Ingrident amount">
+            <button (click)="deleteIngrident(ingredient)" class="btn btn-sm btn-danger mt-2">Delete ingrident</button>
             </div>
+            <div class="card w-50 mb-2">
+                <label>Ingrident</label>
+                <select class="form-select form-select-sm mb-3" 
+                aria-label=".form-select-lg example"
+                required
+                ngModel
+                #newIngrident="ngModel"
+                >
+                    <option value="Pasta">Pasta</option>
+                    <option value="Minced Meat">Minced Meat</option>
+                    <option value="Egg">Egg</option>
+                    <option value="Parmesan">Parmesan</option>
+                    <option value="Dough">Dough</option>
+                    <option value="Cheese">Cheese</option>
+                  </select>
+                <label for="priceInput">Ingrident price per</label>
+                <input class="form-control w-100 mb-3"
+                type="number" 
+                id="newPriceInput" 
+                required
+                #newIngridentPrice="ngModel"
+                ngModel
+                aria-describedby="dishHelp"
+                    placeholder="Ingrident price">
+
+                <label>Ingrident amount</label>
+                <input class="form-control w-100 mb-3"
+                type="number" 
+                required
+                #newIngridentAmount="ngModel"
+                ngModel
+                placeholder="Ingrident amount">
+            <button *ngIf="!newIngrident.errors?.['required'] && 
+            !newIngridentPrice.errors?.['required'] && !newIngridentAmount.errors?.['required']; 
+            else warn" 
+            (click)="addIngrident(newIngrident.value, 
+            newIngridentPrice.value, newIngridentAmount.value);
+            newIngrident.reset(); newIngridentPrice.reset(); newIngridentAmount.reset()"
+            class="btn btn-sm btn-primary mt-2">Add ingrident</button>
+            </div>
+            <ng-template #warn>
+                <p>Both name and price need to be filled in</p>
+            </ng-template>
         </div>
+        <button routerLink="/edit-restaurant" class="btn w-100 btn-secondary">Go back</button>
     </div>
 </ng-template>

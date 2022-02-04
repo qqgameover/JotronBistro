@@ -7,4 +7,10 @@ export class Dish {
 		this.name = dishName;
 		if (ingList) this.ingredients = ingList;
 	}
+  getTotalDishPrice(): number {
+    var total = this.ingredients.reduce((prev, curr) => {
+      return prev + curr.price * curr.amount;
+    }, 0)
+    return total;
+  }
 }

@@ -12,12 +12,26 @@ export class ResturantsService {
   public selectedDish!: Dish;
   constructor() {
     this.resturantList.push(new Resturant("Jotron Larvik", true, 
-    [new Dish("Pizza", [new Ingridient("Tomato sauce", 30), new Ingridient("Cheese", 10), new Ingridient("Ham", 40)]), 
-    new Dish("Also Pizza"), new Dish("The best pizza?")]))
+    [new Dish("Pizza ala Kasper", [new Ingridient("Dough", 30), 
+    new Ingridient("Cheese", 10), new Ingridient("Minced Meat", 1)]),
+    new Dish("Lame Pasta", [
+      new Ingridient("Pasta", 2),
+      new Ingridient("Minced Meat", 3, 2)]),
+    new Dish("Pasta Carbonara", [
+      new Ingridient("Pasta", 1),
+      new Ingridient("Egg", 1, 2),
+      new Ingridient("Minced Meat", 3)])]))
 
-    this.resturantList.push(new Resturant("Jotron Oslo?", true, 
-    [new Dish("Pizza", [new Ingridient("Tomato sauce", 30), new Ingridient("Cheese", 10), new Ingridient("Ham", 40)]), 
-    new Dish("Also Pizza"), new Dish("The best pizza?")]))
+    this.resturantList.push(new Resturant("Dunno", true, 
+    [new Dish("Pizza ala Richard", [new Ingridient("Dough", 30), 
+    new Ingridient("Cheese", 10), new Ingridient("Minced Meat", 1)]),
+    new Dish("Super Pasta", [
+      new Ingridient("Pasta", 2),
+      new Ingridient("Minced Meat", 3, 2)]),
+    new Dish("Pasta Brke", [
+      new Ingridient("Pasta", 1),
+      new Ingridient("Egg", 1, 2),
+      new Ingridient("Minced Meat", 3)])]))
   }
   public getRestList(): Array<Resturant> {
     return this.resturantList;
@@ -64,5 +78,14 @@ export class ResturantsService {
       return d !== dish;
     })
     this.selectedRes.dishList = tempArr;
+  }
+  public deleteIngridient(dish: Dish, ingrident: Ingridient): void {
+    var tempArr: Array<Ingridient> = dish.ingredients.filter((d) => {
+      return d !== ingrident;
+    })
+    dish.ingredients = tempArr;
+  }
+  public addIngridient(dish: Dish, ingrident: Ingridient): void {
+    dish.ingredients.push(ingrident);
   }
 }

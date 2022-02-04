@@ -16,10 +16,6 @@ export class MainComponent implements OnInit {
     this.resturantList = this.resService.getRestList();
     this.segmentList = this.splitArrayIntoChunks(this.resturantList, 3);
   }
-  changeStatus(index: number): void {
-    this.resService.changeStatus(index);
-    this.resturantList = this.resService.getRestList();
-  }
   splitArrayIntoChunks(arr: Array<Resturant>, len: number) {
     var chunks = [], i = 0, n = arr.length;
     while (i < n) {
@@ -27,9 +23,8 @@ export class MainComponent implements OnInit {
     }
     return chunks;
   }
-  changeSelectedRest(index: number): void {
-    var selected: Resturant = this.resturantList[index];
-    this.resService.setSelectedRes(selected);
+  changeSelectedRest(resturant: Resturant): void {
+    this.resService.setSelectedRes(resturant);
   }
 
 }

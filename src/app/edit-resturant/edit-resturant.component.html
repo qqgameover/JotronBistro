@@ -18,7 +18,13 @@
 						<div class="card-text h5" >Ingridents <h5 style="float: right;">Price</h5></div>
 					</div>
 					<div class="row text-nowrap">
-						<div class="card-text" *ngFor="let ingrident of dish.ingredients">{{ingrident.name}} <p style="float: right;">{{ingrident.price}}€</p></div>
+						<div class="card-text" *ngFor="let ingrident of dish.ingredients">
+							{{ingrident.name}} x {{ingrident.amount}} 
+							<p style="float: right;">{{ingrident.price}}€</p>
+						</div>
+						<div class="card-text">
+							Total: <p style="float: right;">{{getTotalDishPrice(dish)}}€</p>
+						</div>
 					</div>
 				</div>
 				<div class="row justify-content-center">
@@ -26,8 +32,10 @@
 					<button (click)="deleteDish(selectedRestaurant, dish)" class="btn btn-danger w-25">Remove dish</button>
 				</div>
 			</div>
-				<div class="card w-50 bg-success text-white mb-4">
-					<div class="card-body">
+				<div routerLink="/edit-dish" (click)="addNewDish()" 
+				class="card d-flex w-50  bg-success text-white mb-4"
+				style="cursor: pointer;">
+					<div class="card-body d-flex justify-content-center align-items-center">
 						<h5 class="card-title text-center">Add a new dish</h5>
 					</div>
 				</div>
